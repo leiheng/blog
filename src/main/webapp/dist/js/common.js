@@ -10,51 +10,6 @@
 			},
 
 			/**
-			 * 通用的加载中
-			 * @return {[type]} [description]
-			 */
-			loading: function(){
-				require(['artDialog'],function(){
-					dialog({
-					    skin: 'min-dialog tips'
-					}).show();
-				})
-			},
-
-			/**
-			 * 提示信息
-			 * @return {[type]} [description]
-			 */
-			tips: function(opts){
-				if (typeof opts == 'string') {
-		    		
-		    		return;
-				}
-		    	
-		    	var options = {
-		       	 	msg: '请稍后..',
-		       	 	type: 'default',
-		       	 	stayTime: 2000,
-		       	 	updateText: false,
-		            callback:null,
-		        }
-		    	
-		    	$.extend(true, options, opts || {});
-		    	
-		    	
-		    	var html = [
-		    		'<div class="common-tips tips-'+ options.type +'">'+ options.msg +'</div>'
-		    	];
-
-		    	$('body').append(html.join());
-
-		    	setTimeout(function(){
-		    		$('.common-tips').remove();
-		    		options.callback && options.callback();
-		    	},options.stayTime)
-			},
-
-			/**
 		     * 获取URL参数
 		     * @param name url参数名
 		     * @returns
@@ -63,21 +18,6 @@
 		        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 		        var r = window.location.search.substr(1).match(reg);
 		        if (r != null) return decodeURI(r[2]) || '';
-		    },
-		    
-		    /**
-		     * 初始化选中的导航
-		     * @return {[type]} [description]
-		     */
-		    initNav: function(){
-		    	/*var currentHref = window.location.href.split(PC_ROOT)[1];
-		    	if (currentHref == '/') {
-		    		$('.nav-text p:nth-child(1)').addClass('active');
-				}else{
-					$('.nav-text p').each(function(k,v){
-		    			$(v).attr('data-href').indexOf(currentHref) > -1 && $(v).addClass('active');
-	            	})
-				}*/
 		    },
 		    
 		    /**

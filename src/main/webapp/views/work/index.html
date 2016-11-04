@@ -16,74 +16,165 @@
 	<!-- 不自动识别手机号码 -->
     <meta name="format-detection" content="telephone=no" >
     
-    <title>通用的require</title>
-    
-    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+    <title>我的工作台</title>
+
+    <style type="text/css">
+        header {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .avatar-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10%;
+            box-sizing: border-box;
+        }
+        .avatar-area i {
+            height: 100px;
+            width: 100px;
+            background: #10aeff;
+            border-radius: 50%;
+            box-shadow: 2px 2px 4px #fff4f4;
+        }
+    </style>
 </head>
 <body>
-    <article>
-        <section class="module-section margin-top0">
-            
-        </section>
-
-        <form name="goingOutDetail" id="goingOutDetail">
-	        <section class="module-section">
-	            
-	        </section>
-        </form> 
-
-        <section class="blank-place"></section>
-    </article>
+    <header class="weui-row"></header>
+    <article></article>
+    <footer></footer>
 </body>
+<script id="indexHeaderTpl" type="text/html">
+    <div class="weui-col-20"><</div>
+    <div class="weui-col-60">60</div>
+    <div class="weui-col-20">菜单</div>
+</script>
+<script id="indexArticleTpl" type="text/html">
+    <div class="avatar-area">
+        <i></i>
+    </div>
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_hd">
+            <div class="weui_media_box weui_media_text">
+                <h4 class="weui_media_title">欢迎： 何宗华</h4>
+                <p class="weui_media_desc">感谢认真工作的你~</p>
+                <ul class="weui_media_info">
+                    <li class="weui_media_info_meta">11月4日</li>
+                    <li class="weui_media_info_meta">22点33分</li>
+                    <li class="weui_media_info_meta weui_media_info_meta_extra">星期三</li>
+                </ul>
+            </div>
+        </div>
+        <div class="weui_panel_bd">
+            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" src="" alt="">
+                </div>
+                <div class="weui_media_bd">
+                    <h4 class="weui_media_title">标题一</h4>
+                    <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div>
+            </a>
+        </div>
+        <a class="weui_panel_ft" href="javascript:void(0);">查看更多</a>
+    </div>
 
-<script type="text/javascript" src="/plugin/requirejs/require.min.js" data-main="/config"></script>
+    <div class="weui_grids">
+        <a href="javascript:;" class="weui_grid js_grid" data-id="button">
+            <div class="weui_grid_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui_grid_label">
+                写日志
+            </p>
+        </a>
+        <a href="javascript:;" class="weui_grid js_grid" data-id="cell">
+            <div class="weui_grid_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_cell.png" alt="">
+            </div>
+            <p class="weui_grid_label">
+                历史回顾
+            </p>
+        </a>
+        <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
+            <div class="weui_grid_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_toast.png" alt="">
+            </div>
+            <p class="weui_grid_label">
+                Toast
+            </p>
+        </a>
+    </div>
+</script>
+
+<script id="indexFooterTpl" type="text/html">
+    <div class="weui_tabbar">
+        <a href="javascript:;" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_article.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">工作台</p>
+        </a>
+        <a href="javascript:;" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我</p>
+        </a>
+    </div>
+</script>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
 <script type="text/javascript">
-require.config({
-    baseUrl : "/",
-    paths: {
-        jquery:'plugin/jquery/jquery-3.1.0.min',
-        fastclick: 'plugin/jquery/fastclick',
-        jqueryWeUI: 'plugin/jqweui/js/jquery-weui',
-        common: 'js/common',
-        page: 'plugin/jsBrigde/page',
-        formValidate: 'plugin/validate/form-validate',
-        mdater: 'plugin/mdater/js/jquery.mdater.min',//日期选择插件，from github，经过改造
-        dateFormat: 'utils/dateFormat.min',//日期格式化工具组件，自己封装、轻量级
-        rules: 'plugin/validate/rules',
-    },
-    shim: {
-        jqueryWeUI: {
-            deps: ['jquery'],
-            exports: '$'
-        }
-    }
-});
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
 
-require(
-    [
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+	require([
         'jquery',
-        'fastclick',
-    ], 
-    function($,FastClick){
-        $(document).ready(function() { 
-            FastClick.attach(document.body);
+        'common',
+        'jqueryWeUI'
+        ],
+    function($){
+        var $header = $('header'),
+            $article = $('article'),
+            $footer = $('footer');
 
-           	var xx = {
+        var indexMain = {
                 init: function(){
-                    var self = xx;
-                    
+                    var self = indexMain;
+                        require(['artTemplate'],function(template){
+                            $header.html(template('indexHeaderTpl', self.data));    
+                            $article.html(template('indexArticleTpl', self.data));    
+                            $footer.html(template('indexFooterTpl', self.data));    
+                            indexFooterTpl
+                            self.watch();
+                        })
                 },
+
                 options: {
                     
                 },
 
-                bind: function(){
-                    var self = xx;
+                data: {
+                	gobackShow: false,
+                    menuShow: '',
+                    title: '365个人综合意外保险'
+                },
+
+                watch: function(){
+                    var self = indexMain;
                 }
             }
-
-        require(['common','formValidate','rules'],xx.init)
-        });
-    });
+        indexMain.init();
+	})
+}
 </script>
 </html>

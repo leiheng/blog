@@ -1,11 +1,17 @@
 package com.microman.blog.vo;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class WorkHouse {
+public class WorkHouse implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4677097978659427175L;
 
 	//房子id
     private BigInteger hId;
