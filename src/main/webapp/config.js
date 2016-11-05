@@ -15,6 +15,9 @@ require.config({
         common: 'dist/js/common',
         artTemplate: 'plugin/template/artTemplate-3.0',
         jqueryWeUI: 'plugin/jqweui/js/jquery-weui.min',
+        
+        mdater: 'plugin/mdater/js/jquery.mdater.min',
+        dateFormat: 'utils/date/dateFormat.min'
     },
     shim: {
     	common: ['css!dist/css/common'],
@@ -22,7 +25,8 @@ require.config({
     	jqueryWeUI: {
             deps: ['jquery'],
             exports: '$'
-        }
+        },
+        mdater: ['css!plugin/mdater/css/jquery.mdater.min']
     },
     waitSeconds: 15
 });

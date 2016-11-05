@@ -20,25 +20,33 @@
 
     <style type="text/css">
         header {
+            width: 100%;
             height: 40px;
             line-height: 40px;
             text-align: center;
+            background-color: #04BE02;
+            color: white;
+        }
+        header>.weui-col-60 {
+            font-size: 20px;
+            font-weight: 400;
         }
         .avatar-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10%;
+            padding: 6%;
             box-sizing: border-box;
+            background-color: #04BE02;
         }
-        .avatar-area i {
+        .avatar-area img {
             height: 100px;
             width: 100px;
-            background: #10aeff;
             border-radius: 50%;
-            box-shadow: 2px 2px 4px #fff4f4;
+            box-shadow: 2px 2px 2px #04BE02;
         }
+
     </style>
 </head>
 <body>
@@ -47,42 +55,42 @@
     <footer></footer>
 </body>
 <script id="indexHeaderTpl" type="text/html">
-    <div class="weui-col-20"><</div>
-    <div class="weui-col-60">60</div>
+    <div class="weui-col-20"></div>
+    <div class="weui-col-60">{{title}}</div>
     <div class="weui-col-20">菜单</div>
 </script>
 <script id="indexArticleTpl" type="text/html">
     <div class="avatar-area">
-        <i></i>
+        <img src="/dist/img/avatar/IMG_0533.JPG">
     </div>
     <div class="weui_panel weui_panel_access">
         <div class="weui_panel_hd">
             <div class="weui_media_box weui_media_text">
-                <h4 class="weui_media_title">欢迎： 何宗华</h4>
+                <h4 class="weui_media_title">欢迎： 何宗华  老板</h4>
                 <p class="weui_media_desc">感谢认真工作的你~</p>
                 <ul class="weui_media_info">
-                    <li class="weui_media_info_meta">11月4日</li>
+                    <li class="weui_media_info_meta">11月5日</li>
                     <li class="weui_media_info_meta">22点33分</li>
-                    <li class="weui_media_info_meta weui_media_info_meta_extra">星期三</li>
+                    <li class="weui_media_info_meta weui_media_info_meta_extra">星期六</li>
                 </ul>
             </div>
         </div>
         <div class="weui_panel_bd">
             <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
                 <div class="weui_media_hd">
-                    <img class="weui_media_appmsg_thumb" src="" alt="">
+                    <i class="weui_icon_msg weui_icon_waiting"></i>
                 </div>
                 <div class="weui_media_bd">
-                    <h4 class="weui_media_title">标题一</h4>
-                    <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    <h4 class="weui_media_title">昨日回顾</h4>
+                    <p class="weui_media_desc">宗华|全勤，宗林|全勤，老易|半天</p>
                 </div>
             </a>
         </div>
-        <a class="weui_panel_ft" href="javascript:void(0);">查看更多</a>
+        <a class="weui_panel_ft" href="javascript:window.indexMain.noFinsh();">查看更多</a>
     </div>
 
     <div class="weui_grids">
-        <a href="javascript:;" class="weui_grid js_grid" data-id="button">
+        <a href="/work/write" class="weui_grid js_grid" data-id="button">
             <div class="weui_grid_icon">
                 <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
             </div>
@@ -90,20 +98,20 @@
                 写日志
             </p>
         </a>
-        <a href="javascript:;" class="weui_grid js_grid" data-id="cell">
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_grid js_grid" data-id="cell">
             <div class="weui_grid_icon">
                 <img src="/plugin/jqweui/demos/images/icon_nav_cell.png" alt="">
             </div>
             <p class="weui_grid_label">
-                历史回顾
+                历史记录
             </p>
         </a>
-        <a href="javascript:;" class="weui_grid js_grid" data-id="toast">
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_grid js_grid" data-id="toast">
             <div class="weui_grid_icon">
                 <img src="/plugin/jqweui/demos/images/icon_nav_toast.png" alt="">
             </div>
             <p class="weui_grid_label">
-                Toast
+                我的工程
             </p>
         </a>
     </div>
@@ -111,13 +119,13 @@
 
 <script id="indexFooterTpl" type="text/html">
     <div class="weui_tabbar">
-        <a href="javascript:;" class="weui_tabbar_item">
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_tabbar_item">
             <div class="weui_tabbar_icon">
                 <img src="/plugin/jqweui/demos/images/icon_nav_article.png" alt="">
             </div>
             <p class="weui_tabbar_label">工作台</p>
         </a>
-        <a href="javascript:;" class="weui_tabbar_item weui_bar_item_on">
+        <a href="javascript:window.indexMain.noFinsh();" class="weui_tabbar_item weui_bar_item_on">
             <div class="weui_tabbar_icon">
                 <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
             </div>
@@ -151,7 +159,7 @@ script.onload = script.onreadystatechange = function(){
                 init: function(){
                     var self = indexMain;
                         require(['artTemplate'],function(template){
-                            $header.html(template('indexHeaderTpl', self.data));    
+                            $header.html(template('indexHeaderTpl', self.data.header));    
                             $article.html(template('indexArticleTpl', self.data));    
                             $footer.html(template('indexFooterTpl', self.data));    
                             indexFooterTpl
@@ -163,10 +171,22 @@ script.onload = script.onreadystatechange = function(){
                     
                 },
 
+                noFinsh: function(){
+                    $.toast("何立军正在努力开发中....", "cancel");
+                },
+
                 data: {
-                	gobackShow: false,
-                    menuShow: '',
-                    title: '365个人综合意外保险'
+                    header: {
+                        gobackShow: false,
+                        menuShow: '',
+                        title: '我的工作台'
+                    },
+                	article: {
+
+                    },
+                    footer: {
+
+                    }
                 },
 
                 watch: function(){
@@ -174,7 +194,14 @@ script.onload = script.onreadystatechange = function(){
                 }
             }
         indexMain.init();
+
+        window.indexMain = indexMain;
 	})
 }
 </script>
+<style type="text/css">
+    .weui_icon_waiting:before {
+        font-size: 59px;
+    }
+</style>
 </html>

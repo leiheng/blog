@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>写日志</title>
+
+    <style type="text/css">
+        header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #04BE02;
+            color: white;
+        }
+        header>.weui-col-60 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+        header>.weui-col-20:nth-child(1) {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .button_sp_area {
+            text-align: right;
+            margin-right: 2%;
+            margin-bottom: 2%;
+        }
+        .save-btn {
+            box-sizing: border-box;
+            width: 80%;
+            margin: 14px auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="weui-row"></header>
+    <article></article>
+    <footer></footer>
+</body>
+<script id="indexHeaderTpl" type="text/html">
+    <div class="weui-col-20"><</div>
+    <div class="weui-col-60">{{title}}</div>
+    <div class="weui-col-20">菜单</div>
+</script>
+<script id="indexArticleTpl" type="text/html">
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">房子</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" placeholder="请选择当前工作的房子" id="currentHId">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">日期</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" readonly="readonly" placeholder="请选择日期" id="defaultNewDate">
+            </div>
+        </div>
+
+        <div class="my-partner" id="myPartner">
+            {{include 'partnerTpl'}}
+        </div>
+        <div class="button_sp_area">
+            <a href="javascript:window.writeMain.addPartner();" class="weui_btn weui_btn_mini weui_btn_warn">再添加一个</a>
+        </div>
+        
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">备注</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="说说今天的工作状态吧~" rows="3" maxlength="400"></textarea>
+                <div class="weui_textarea_counter">
+                    <span>200个字以内</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="save-btn">
+        <a href="javascript:window.writeMain.noFinsh('暂时还不能保存，请等待功能开发完毕！');" class="weui_btn weui_btn_primary">保存</a>
+    </div>
+</script>
+
+<script id="partnerTpl" type="text/html">
+    <div class="weui_cell">
+        <div class="weui_cell_hd">
+            <label class="weui_label">工友{{idFlag}}</label>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" readonly="readonly" type="text" placeholder="请选择工友{{idFlag}}姓名和出勤状态" id="gongYou{{idFlag}}">
+        </div>
+    </div>
+</script>
+
+<script id="indexFooterTpl" type="text/html">
+    <div class="weui_tabbar">
+        <a href="javascript:window.writeMain.noFinsh();" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_article.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">工作台</p>
+        </a>
+        <a href="javascript:window.writeMain.noFinsh();" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                <img src="/plugin/jqweui/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我</p>
+        </a>
+    </div>
+</script>
+
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+var script = document.createElement("script"),
+head = document.head || document.getElementsByTagName('head')[0];
+
+script.type = "text/javascript";
+script.src = '/config.js?ver=' + (new Date()).getTime();
+
+head.appendChild(script); 
+
+script.onload = script.onreadystatechange = function(){
+	require([
+        'jquery',
+        'common',
+        'jqueryWeUI'
+        ],
+    function($){
+        var $header = $('header'),
+            $article = $('article'),
+            $footer = $('footer');
+
+        var writeMain = {
+                init: function(){
+                    var self = writeMain;
+                    require(['artTemplate'],function(template){
+                        $header.html(template('indexHeaderTpl', self.data.header));    
+                        $article.html(template('indexArticleTpl', self.data));    
+                        $footer.html(template('indexFooterTpl', self.data));
+                        self.renderCurrentHouse();
+                        self.renderDate();
+                        self.renderPartner('#gongYou'); 
+                        self.watch();
+                    })
+                },
+
+                options: {
+                    idFlag: 2
+                },
+
+                noFinsh: function(text){
+                    $.toast(text || "何立军正在努力开发中....", "cancel");
+                },
+
+                renderCurrentHouse: function(){
+                    $('#currentHId').picker({
+                        title: "选择当前工作的房子",
+                        cols: [
+                            {
+                                textAlign: 'center',
+                                values: [
+                                    '石湾村',
+                                    '泗汾'
+                                ]
+                            }
+                        ]
+                    });
+                },
+
+                renderDate: function(){
+                    //日期控件
+                    require(['mdater','dateFormat'],function(mdater,dateFormat){
+                        var $defaultNewDate = $('#defaultNewDate'),
+                            minDate = new Date();
+
+                        //默认日期
+                        $defaultNewDate.val(dateFormat(minDate,'default')).mdater({
+                            maxDate : minDate,
+                            onOk : function(e){
+                                //
+                            }
+                        });
+                    });
+                },
+
+                addPartner: function(){
+                    var self = writeMain;
+                    require(['artTemplate'],function(template){
+                        $('#myPartner').append(template('partnerTpl',{
+                            idFlag: self.options.idFlag
+                        }))
+                        self.renderPartner('#gongYou' + self.options.idFlag);
+                        self.options.idFlag ++;
+                    })
+                },
+
+                renderPartner: function(selector){
+                    $(selector).picker({
+                        title: "选择工友的名字和出勤状态",
+                        toolbar: true,
+                        cols: [
+                            {
+                                textAlign: 'center',
+                                values: [
+                                    '宗华',
+                                    '宗林'
+                                ]
+                            },
+                            {
+                                textAlign: 'center',
+                                values: [
+                                        '全勤',
+                                        '半天',
+                                        '没来'
+                                    ]
+                            },
+                        ]
+                    });
+                },
+
+                data: {
+                    header: {
+                        gobackShow: false,
+                        menuShow: '',
+                        title: '写日志'
+                    },
+                	article: {
+
+                    },
+                    footer: {
+
+                    }
+                },
+
+                watch: function(){
+                    var self = writeMain;
+
+                    $('header>.weui-col-20:nth-child(1)').on('click',function(){
+                        window.history.go(-1)
+                    })
+                }
+            }
+        writeMain.init();
+
+        window.writeMain = writeMain;
+	})
+}
+</script>
+</html>
