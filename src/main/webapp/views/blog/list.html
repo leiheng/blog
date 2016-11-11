@@ -5,14 +5,9 @@
     <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     
-    <!--  浏览器不缓存，每次都去服务器拉取 -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
-	
-	<!-- 不自动识别手机号码 -->
-    <meta name="format-detection" content="telephone=no" >
-    
+    <meta name="keywords" content="莉莉·安，ITer请跟随兴趣一路前行"/>
+    <meta name="description" content="何立军的个人博客，欢迎大家一起交流学习。" />
+    <meta name="baidu-site-verification" content="pOTtshh74R" />
     <title>首页--莉莉·安</title>
     
     <link rel="stylesheet" type="text/css" href="/plugin/bootstrap-3.3.5-dist/css/bootstrap.min.css">
@@ -28,6 +23,22 @@
             margin: 0;
         }
 
+        .li-title {
+            background-color: #e28181;
+            height: 2.88rem;
+            font-size: 1.868rem;
+            line-height: 2.88rem;
+        }
+        .li-title:hover {
+            font-size: 1.918rem;
+            transition: .2s;
+        }
+        .li-img {
+            width: 100%;
+            background: url("/dist/img/list/VY6rzPUa6FNKWXVosdGs.jpg");
+            background-size: 100% 100%;
+            margin-bottom: 0;
+        }
         .li-blog-title {
             color: black;
             line-height: 4;
@@ -44,8 +55,6 @@
         .li-nav-left>.active:hover{
             color: #e28281;
             font-size: 1.83rem;
-            -webkit-transition: 2s;
-            -moz-transition: 2s;
             transition: .5s;
         }
 
@@ -63,19 +72,6 @@
             padding: 0 16px;
             height: 100%;
             overflow: auto;
-        }
-
-        .li-title {
-            background-color: #e28181;
-            height: 1.68rem;
-            font-size: 0.868rem;
-            line-height: 1.68rem;
-        }
-        .li-img {
-            width: 100%;
-            background: url("/dist/img/list/VY6rzPUa6FNKWXVosdGs.jpg");
-            background-size: 100% 100%;
-            margin-bottom: 0;
         }
 
     </style>
@@ -114,8 +110,10 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10" id="blogContent">
-                    
-                    
+                    <div class="li-spinner">
+                        <div class="first-bounce"></div>
+                        <div class="next-bounce"></div>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2"></div>
             </div>
@@ -130,7 +128,7 @@
                 <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE0LjUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 120px; height: 120px;">
             </a> -->
             <div class="media-body">
-                <a href="{{value.link}}" class="li-blog-title" >
+                <a href="{{value.link}}" class="li-blog-title" target="_blank">
                     <h3 class="media-heading">{{value.title}}</h3>
                 </a>
                 <p class="text-ellipsis">{{value.descript}}</p>

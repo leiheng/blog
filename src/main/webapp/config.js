@@ -24,7 +24,6 @@ require.config({
         dateFormat: 'utils/date/dateFormat.min'
     },
     shim: {
-    	artTemplate: ['css!plugin/jqweui/css/weui-and-jqueryweui'],
     	jqueryWeUI: {
             deps: ['jquery'],
             exports: '$'
