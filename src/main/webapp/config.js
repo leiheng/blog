@@ -1,13 +1,16 @@
-var _VER = (new Date()).getTime(),//开发环境
-	//_ver = '1.0.0',
-
-	_XHR = '/rest/',
-	_PATH = ''; //图片
-
-var errorTips = '哎哟，网络好像有点问题了..';
+//何立军的个人网站唯一全局变量
+window.liliangel = {
+    version: (new Date()).getTime(),//开发环境
+    errorTips: '哎哟，网络好像有点问题了..',
+    _ROOT: '',//测试
+    _XHR: '/rest/',
+    _CORS: '/cors/',
+    _STATIC: '',
+    _WX: ''
+}
 
 require.config({
-	urlArgs: "v=" +  _VER,
+	urlArgs: "v=" +  liliangel.version,
     baseUrl : "/",
     paths: {
     	//必须插件
@@ -15,14 +18,18 @@ require.config({
         common: 'dist/js/common',
         artTemplate: 'plugin/template/artTemplate-3.0',
         jqueryWeUI: 'plugin/jqweui/js/jquery-weui.min',
-        
+        bootstrap: 'plugin/bootstrap-3.3.5-dist/js/bootstrap.min',
+
         mdater: 'plugin/mdater/js/jquery.mdater.min',
         dateFormat: 'utils/date/dateFormat.min'
     },
     shim: {
-    	common: ['css!dist/css/common'],
     	artTemplate: ['css!plugin/jqweui/css/weui-and-jqueryweui'],
     	jqueryWeUI: {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        bootstrap: {
             deps: ['jquery'],
             exports: '$'
         },

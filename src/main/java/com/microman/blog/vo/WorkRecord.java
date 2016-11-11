@@ -25,7 +25,7 @@ public class WorkRecord implements Serializable{
     //工作日期
     private Date rDate;
     
-    //工作者,是否满整体;如1,0;2,1;3,0.5;4,-1; 0整体、0.5半天，-1没来，其他代表工作小时
+    //工作者,是否满整天;如1,0;2,1;3,0.5;4,-1; 0整体、0.5半天，-1没来，其他代表工作小时
     private String pIdIsfull;
     
     //备注

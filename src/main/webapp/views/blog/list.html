@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 视口，屏幕的宽度1：1，不允许缩放 -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    
+    <!--  浏览器不缓存，每次都去服务器拉取 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+	<!-- 不自动识别手机号码 -->
+    <meta name="format-detection" content="telephone=no" >
+    
+    <title>首页--莉莉·安</title>
+    
+    <link rel="stylesheet" type="text/css" href="/plugin/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/common.css">
+    <style type="text/css">
+        
+        .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+            padding: 0;
+            height: 100%;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .li-blog-title {
+            color: black;
+            line-height: 4;
+        }
+        .li-blog-title>h3 {
+            margin-top: 1.2rem;
+        }
+        .li-nav-left>p {
+            cursor: pointer;
+        }
+        .li-nav-left>.active{
+            color: #e28181;
+        }
+        .li-nav-left>.active:hover{
+            color: #e28281;
+            font-size: 1.83rem;
+            -webkit-transition: 2s;
+            -moz-transition: 2s;
+            transition: .5s;
+        }
+
+        .li-main {
+            height: 100%;
+        }
+
+        .main-left {
+            background: rgba(0,0,0,.86);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19black);
+            text-align: center;
+            color: white;
+        }
+        .main-right {
+            padding: 0 16px;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .li-title {
+            background-color: #e28181;
+            height: 1.68rem;
+            font-size: 0.868rem;
+            line-height: 1.68rem;
+        }
+        .li-img {
+            width: 100%;
+            background: url("/dist/img/list/VY6rzPUa6FNKWXVosdGs.jpg");
+            background-size: 100% 100%;
+            margin-bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row li-main">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 main-left">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 li-nav-left">
+                    <p class="li-title">莉</p>
+                    <p class="active"><i class="icon-boke"></i></p>
+                </div>
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                    <div class="jumbotron li-img">
+                        <h1>Hello, world!</h1>
+                        <p>... ...</p>
+                        <p>
+                            <a class="btn btn-primary btn-lg" href="#" role="button">未完，待续</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 main-right">
+            <div class="page-header">
+                <h1>ITer <small>请跟随兴趣一路前行</small></h1>
+            </div>
+            
+            <button class="btn btn-info" type="button">
+                Javascript <span class="badge"> 4</span>
+            </button>
+            <button class="btn btn-warning" type="button">
+                JAVA<span class="badge"> 2</span>
+            </button>
+            <p class="divider"></p>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10" id="blogContent">
+                    
+                    
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script id="blogListTpl" type="text/html">
+    {{each data as value i}}
+        <div class="media">
+            <!-- <a class="pull-right" href="{{value.link}}">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE0LjUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 120px; height: 120px;">
+            </a> -->
+            <div class="media-body">
+                <a href="{{value.link}}" class="li-blog-title" >
+                    <h3 class="media-heading">{{value.title}}</h3>
+                </a>
+                <p class="text-ellipsis">{{value.descript}}</p>
+            </div>
+        </div> 
+    {{/each}}
+
+    <br>
+    <h6>粤ICP备16104098号 版权所有 @helijun</h6> 
+</script>
+<script type="text/javascript" src="/plugin/requirejs/require.min.js"></script>
+<script type="text/javascript">
+    var script = document.createElement("script"),
+    head = document.head || document.getElementsByTagName('head')[0];
+
+    script.type = "text/javascript";
+    script.src = '/config.js?ver=' + (new Date()).getTime();
+
+    head.appendChild(script); 
+
+    script.onload = script.onreadystatechange = function(){
+        require([
+                'jquery',
+                'common',
+                'artTemplate'
+            ],
+            function($,undefined,template){
+                var blogMain = {
+                    init: function(){
+                        var self = blogMain;
+                            self.renderHtml();
+                            self.renderComponent();
+                            self.watch();
+                    },
+                    options: {
+                        
+                    },
+                    
+                    //渲染html
+                    renderHtml: function(){
+                        var self = blogMain;
+                            self.getBlogListFun();
+                    	$('.li-main,.li-img').css({height: window.innerHeight+'px'}); 
+                    },
+                    
+                    //渲染组件
+                    renderComponent: function(){
+
+                    },
+                    
+                    //获取博客列表
+                    getBlogListFun: function(){
+                        var self = blogMain;
+
+                        $.ajax({
+                            url: liliangel._XHR + 'blog/list',
+                            type: "GET",
+                            beforeSend: function () {
+                                
+                            },
+                            success: function (json) {
+                                if (json) {
+                                    self.renderBlogListFun(json);
+                                }else {
+                                    //common.error();
+                                }
+                            },
+                            complete: function () {
+                                
+                            },
+                            timeout: 6000
+                        });
+
+                        
+                    },
+                    //渲染博客列表
+                    renderBlogListFun(json){
+                        console.log('博客列表',json)
+                        $('#blogContent').html(template('blogListTpl', json || {}))
+                    },
+
+                    watch: function(){
+                    	
+                    }
+                }
+            blogMain.init();
+        })
+    }
+
+</script>
+
+</html>

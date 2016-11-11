@@ -18,7 +18,8 @@ public class PageController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcomePage() {
-        return new ModelAndView("mogu/index");
+        //return new ModelAndView("mogu/index");
+    	return new ModelAndView("blog/list");
     }
     
     @RequestMapping(value = "{fileName}/{pageName}", method = RequestMethod.GET)

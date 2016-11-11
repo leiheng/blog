@@ -20,7 +20,7 @@ public class WorkPartner implements Serializable{
     private String aliasName;
     
     //手机号码
-    private Integer pMobile;
+    private String pMobile;
     
     //密码
     private String pPwd;
@@ -67,11 +67,11 @@ public class WorkPartner implements Serializable{
 		this.aliasName = aliasName;
 	}
 
-	public Integer getpMobile() {
+	public String getpMobile() {
 		return pMobile;
 	}
 
-	public void setpMobile(Integer pMobile) {
+	public void setpMobile(String pMobile) {
 		this.pMobile = pMobile;
 	}
 
@@ -132,7 +132,7 @@ public class WorkPartner implements Serializable{
 	}
 
 	public WorkPartner(BigInteger pId, String realName, String aliasName,
-			Integer pMobile, String pPwd, String pAddress, Integer pRole,
+			String pMobile, String pPwd, String pAddress, Integer pRole,
 			BigInteger parentId, String pAvatar, Integer pAge, String idCard) {
 		super();
 		this.pId = pId;
