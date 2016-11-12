@@ -7,22 +7,28 @@ import org.joda.time.DateTime;
 
 public class BlogList implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3463786979561856007L;
-	private BigInteger id;
-	private String title;//标题
-	private String descript;//描述
-	private String link;//链接
-	private int type;//0博客园，1github
-	private String liRead;//阅读，外键、逗号隔开
-	private String liLike;//喜欢
 	
-	private String liComment;//评论
+	private BigInteger id;
+	private String listTitle;//标题
+	private String listDescript;//描述
+	private String listLink;//链接
+	
+	private int listType;//分类，1前端，2JAVA，3感悟
+	private int isOwner;//1原创、2转载
+	private int listFrom;//来源，0博客园，1github，3简书，4...
+	
+	private int listStatus;//文章状态，1显示，0隐藏
+	private int isGood;//是否加精，1是，0否
+	
+	private BigInteger listRead;//阅读，外键、逗号隔开
+	private BigInteger listLike;//喜欢
+	private BigInteger listComment;//评论
+	
 	private String coverImg;//封面图片
 	private String coverDesc;//封面描述
-	private int sort;//排序位
+	
+	private int listSort;//排序位
 	private DateTime create_time;//创建时间
 	private DateTime update_time;//更新时间
 	public BigInteger getId() {
@@ -31,47 +37,71 @@ public class BlogList implements Serializable{
 	public void setId(BigInteger id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
+	public String getListTitle() {
+		return listTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setListTitle(String listTitle) {
+		this.listTitle = listTitle;
 	}
-	public String getDescript() {
-		return descript;
+	public String getListDescript() {
+		return listDescript;
 	}
-	public void setDescript(String descript) {
-		this.descript = descript;
+	public void setListDescript(String listDescript) {
+		this.listDescript = listDescript;
 	}
-	public String getLink() {
-		return link;
+	public String getListLink() {
+		return listLink;
 	}
-	public void setLink(String link) {
-		this.link = link;
+	public void setListLink(String listLink) {
+		this.listLink = listLink;
 	}
-	public int getType() {
-		return type;
+	public int getListType() {
+		return listType;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setListType(int listType) {
+		this.listType = listType;
 	}
-	public String getLiRead() {
-		return liRead;
+	public int getIsOwner() {
+		return isOwner;
 	}
-	public void setLiRead(String liRead) {
-		this.liRead = liRead;
+	public void setIsOwner(int isOwner) {
+		this.isOwner = isOwner;
 	}
-	public String getLiLike() {
-		return liLike;
+	public int getListFrom() {
+		return listFrom;
 	}
-	public void setLiLike(String liLike) {
-		this.liLike = liLike;
+	public void setListFrom(int listFrom) {
+		this.listFrom = listFrom;
 	}
-	public String getLiComment() {
-		return liComment;
+	public int getListStatus() {
+		return listStatus;
 	}
-	public void setLiComment(String liComment) {
-		this.liComment = liComment;
+	public void setListStatus(int listStatus) {
+		this.listStatus = listStatus;
+	}
+	public int getIsGood() {
+		return isGood;
+	}
+	public void setIsGood(int isGood) {
+		this.isGood = isGood;
+	}
+	public BigInteger getListRead() {
+		return listRead;
+	}
+	public void setListRead(BigInteger listRead) {
+		this.listRead = listRead;
+	}
+	public BigInteger getListLike() {
+		return listLike;
+	}
+	public void setListLike(BigInteger listLike) {
+		this.listLike = listLike;
+	}
+	public BigInteger getListComment() {
+		return listComment;
+	}
+	public void setListComment(BigInteger listComment) {
+		this.listComment = listComment;
 	}
 	public String getCoverImg() {
 		return coverImg;
@@ -85,11 +115,11 @@ public class BlogList implements Serializable{
 	public void setCoverDesc(String coverDesc) {
 		this.coverDesc = coverDesc;
 	}
-	public int getSort() {
-		return sort;
+	public int getListSort() {
+		return listSort;
 	}
-	public void setSort(int sort) {
-		this.sort = sort;
+	public void setListSort(int listSort) {
+		this.listSort = listSort;
 	}
 	public DateTime getCreate_time() {
 		return create_time;
@@ -103,27 +133,32 @@ public class BlogList implements Serializable{
 	public void setUpdate_time(DateTime update_time) {
 		this.update_time = update_time;
 	}
-	public BlogList(BigInteger id, String title, String descript, String link,
-			int type, String liRead, String liLike, String liComment,
-			String coverImg, String coverDesc, int sort, DateTime create_time,
+	public BlogList(BigInteger id, String listTitle, String listDescript,
+			String listLink, int listType, int isOwner, int listFrom,
+			int listStatus, int isGood, BigInteger listRead,
+			BigInteger listLike, BigInteger listComment, String coverImg,
+			String coverDesc, int listSort, DateTime create_time,
 			DateTime update_time) {
 		super();
 		this.id = id;
-		this.title = title;
-		this.descript = descript;
-		this.link = link;
-		this.type = type;
-		this.liRead = liRead;
-		this.liLike = liLike;
-		this.liComment = liComment;
+		this.listTitle = listTitle;
+		this.listDescript = listDescript;
+		this.listLink = listLink;
+		this.listType = listType;
+		this.isOwner = isOwner;
+		this.listFrom = listFrom;
+		this.listStatus = listStatus;
+		this.isGood = isGood;
+		this.listRead = listRead;
+		this.listLike = listLike;
+		this.listComment = listComment;
 		this.coverImg = coverImg;
 		this.coverDesc = coverDesc;
-		this.sort = sort;
+		this.listSort = listSort;
 		this.create_time = create_time;
 		this.update_time = update_time;
 	}
 	public BlogList() {
 		super();
 	}
-	
 }

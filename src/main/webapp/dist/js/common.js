@@ -1,5 +1,5 @@
 ;
-(function (win, undefined) {
+(function () {
 	'use strict';
 	
 	var common = {
@@ -7,6 +7,7 @@
 				common.initTemplateHelper();
 				common.renderHtml();
 				common.watch();
+				//setTimeout(function(){common.insertPageRecord()},0)
 			},
 
 			/**
@@ -63,13 +64,86 @@
             	
             },
 
+            /**
+		     * 右侧滑菜单显示
+		     * @param event
+		     */
+		    rightNavShow: function(event){
+		    	$('.nav-right-mask').show();
+		        setTimeout(function(){
+		            $('.nav-right-content').css({right:'0'}).off().on('click',function(event){
+		            	event.stopPropagation();
+		            });
+		        },100)
+		        
+		        event.stopPropagation();
+		        event.preventDefault();
+		    },
+
+            /**
+		     * 右侧滑菜单隐藏
+		     * @param event
+		     */
+		    rightNavHide: function(event){
+
+		    	$('.nav-right-mask').hide();
+		        setTimeout(function(){
+		            $('.nav-right-content').css({right:'-800px'});
+		        },100)
+
+		        event.stopPropagation();
+		        event.preventDefault();
+		    },
+
+		    /**
+		     * 添加页面访问记录
+		     * @return {[type]} [description]
+		     */
+            insertPageRecord: function(){
+            	var self = common;
+
+            	var par = {};
+            		par.source = 'first';
+            		par.page = 1;
+            		par.browser = self.browser();
+            		par.model = "1";
+
+            	$.ajax({
+                    url: liliangel._XHR + 'record/page',
+                    type: "POST",
+                    data: JSON.stringify(par)
+                });
+            },
+
+            browser: function(){
+			    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			    var isOpera = userAgent.indexOf("Opera") > -1;
+			    if (isOpera) {
+			        return "Opera"
+			    }; //判断是否Opera浏览器
+			    if (userAgent.indexOf("Firefox") > -1) {
+			        return "Firefox";
+			    } //判断是否Firefox浏览器
+			    if (userAgent.indexOf("Chrome") > -1){
+				  	return "Chrome";
+				}
+			    if (userAgent.indexOf("Safari") > -1) {
+			        return "Safari";
+			    } //判断是否Safari浏览器
+			    if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+			        return "IE";
+			    }; //判断是否IE浏览器
+			},
+
            	//事件监听
             watch: function(){
                 var self = common;
+
+                
             }
 		    	
     	};
 	common.init();
 
-	win.common = common;
-})(window);
+	liliangel.common = common;
+})();

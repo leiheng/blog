@@ -19,16 +19,36 @@ html,body {
     height: 100px;
 }
 
-/** 字体图标 **/
-@font-face {font-family: "blog";
-    src: url('/dist/font/blog/blog.eot?t=1474266198'); /* IE9*/
-    src: url('/dist/font/blog/blog.eot?t=1474266198#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/dist/font/blog/blog.woff?t=1474266198') format('woff'), /* chrome, firefox */
-    url('/dist/font/blog/blog.ttf?t=1474266198') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('/dist/font/blog/blog.svg?t=1474266198#iconfont') format('svg'); /* iOS 4.1- */
+.li-hide {
+    display: none;
+}
+.li-text-none {
+    font-style: normal;
+    text-decoration: none;
 }
 
-.icon-boke {
+.li-black {
+    color: black;
+}
+
+/** 字体图标 **/
+@font-face {font-family: "blog";
+    src: url('/dist/font/blog/blog.eot?t=1474266129'); /* IE9*/
+    src: url('/dist/font/blog/blog.eot?t=1474266129#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/dist/font/blog/blog.woff?t=1474266129') format('woff'), /* chrome, firefox */
+    url('/dist/font/blog/blog.ttf?t=1474266129') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('/dist/font/blog/blog.svg?t=1474266129#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.icon-boke,
+.icon-boke2,
+.icon-github,
+.icon-github2,
+.icon-caidan,
+.icon-pinglun,
+.icon-liulan,
+.icon-yuan,
+.icon-zhuan {
     font-family:"blog" !important;
     font-size:16px;
     font-style:normal;
@@ -44,6 +64,67 @@ html,body {
   	font-size: 2.88rem;
   	margin: 6.2rem 0;
 }
+.icon-boke2 {
+    font-size: 2.49rem;
+}
+.icon-boke2:before { 
+    content: "\e60a"; 
+    color: #84dec2;
+}
+.icon-github2 { 
+    font-size: 2.69rem;
+}
+.icon-github2:before { 
+  content: "\e6ed"; 
+}
+.icon-github:before { 
+  content: "\e6ed"; 
+}
+
+.icon-caidan {
+    font-size: 2.43rem;
+}
+.icon-caidan:before { 
+    content: "\e622"; 
+}
+
+.icon-zhuan {
+    font-size: 2.38rem;
+    color: #8a6d3b;
+}
+.icon-zhuan:before { 
+  content: "\e606"; 
+}
+
+.icon-pinglun {
+    line-height: 2.85rem;
+    color: #ababab;
+}
+.icon-pinglun:before { 
+    content: "\e607"; 
+    color: #97c5dc;
+    font-size: 1.86rem;
+}
+
+.icon-liulan {
+    line-height: 2.85rem;
+    color: #6e7071;
+    margin-right: 1.8rem;
+}
+.icon-liulan:before { 
+    font-size: 1.66rem;
+    content: "\e78e"; 
+    color: #337ab7;
+}
+
+.icon-yuan {
+    font-size: 2.3698rem;
+    color: #ffabab;
+}
+.icon-yuan:before { 
+  content: "\e608"; 
+}
+
 
 /** 2行文本溢出 **/
 .text-ellipsis {
@@ -61,7 +142,6 @@ html,body {
     position: relative;
     margin: 100px auto;
 }
- 
 .first-bounce, .next-bounce {
     width: 100%;
     height: 100%;
@@ -71,16 +151,13 @@ html,body {
     position: absolute;
     top: 0;
     left: 0;
-     
     -webkit-animation: bounce 2.0s infinite ease-in-out;
     animation: bounce 2.0s infinite ease-in-out;
 }
- 
 .next-bounce {
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
 }
- 
 @-webkit-keyframes bounce {
     0%, 100% { -webkit-transform: scale(0.0) }
     50% { -webkit-transform: scale(1.0) }
