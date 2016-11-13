@@ -2,14 +2,17 @@ package com.microman.blog.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.microman.blog.common.CommonResponse;
 import com.microman.blog.common.CommonStatus;
-import com.microman.blog.common.JsonResult;
 import com.microman.blog.service.BlogListService;
 import com.microman.blog.vo.BlogList;
 
@@ -22,21 +25,23 @@ import com.microman.blog.vo.BlogList;
 @Controller
 @RequestMapping("/rest/blog")
 public class BlogListController {
-	@Autowired
+	@Resource
 	BlogListService blogListService;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(BlogListController.class);
 	
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult blogInfo() {
+    public CommonResponse blogInfo() {
     	try {
     		List<BlogList> blogInfo = blogListService.blogInfo();
     		if (null != blogInfo) {
-    			return new JsonResult(CommonStatus.SUCCESS,blogInfo,"获取博客列表成功");
+    			return new CommonResponse(CommonStatus.SUCCESS,blogInfo,"获取博客列表成功");
 			}else{
-				return new JsonResult(CommonStatus.SUCCESS,"没有博客列表");
+				return new CommonResponse(CommonStatus.SUCCESS,"没有博客列表");
 			}
 		} catch (Exception e) {
-	        return new JsonResult(CommonStatus.ERROR,"获取博客列表失败");
+	        return new CommonResponse(CommonStatus.ERROR,"获取博客列表失败");
 		}
     }
 }

@@ -1,15 +1,17 @@
 package com.microman.blog.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.microman.blog.common.CommonStatus;
-import com.microman.blog.common.JsonResult;
+import com.microman.blog.common.CommonResponse;
 import com.microman.blog.service.PageRecordService;
 import com.microman.blog.vo.PageRecord;
 
@@ -23,7 +25,7 @@ import com.microman.blog.vo.PageRecord;
 @RequestMapping("/")
 public class PageController {
 
-	@Autowired
+	@Resource
 	PageRecordService pageRecordService;
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -39,10 +41,16 @@ public class PageController {
         return new ModelAndView(fileName + "/"+ pageName);
     }
     
+    /**
+     * 保存页面浏览记录
+     * @param json 
+     * @return
+     */
     @RequestMapping(value = "/rest/record/page", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult PageRecord(PageRecord pageRecord) {
+    public CommonResponse PageRecord(@RequestParam String json) {
+    	PageRecord pageRecord = JSON.parseObject(json, PageRecord.class); 
     	int count = pageRecordService.insertRecord(pageRecord);
-    	return new JsonResult(CommonStatus.SUCCESS,count);
+    	return new CommonResponse(CommonStatus.SUCCESS,count);
     }
 }

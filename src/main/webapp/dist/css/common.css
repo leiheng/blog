@@ -33,11 +33,11 @@ html,body {
 
 /** 字体图标 **/
 @font-face {font-family: "blog";
-    src: url('/dist/font/blog/blog.eot?t=1474266129'); /* IE9*/
-    src: url('/dist/font/blog/blog.eot?t=1474266129#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/dist/font/blog/blog.woff?t=1474266129') format('woff'), /* chrome, firefox */
-    url('/dist/font/blog/blog.ttf?t=1474266129') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('/dist/font/blog/blog.svg?t=1474266129#iconfont') format('svg'); /* iOS 4.1- */
+    src: url('/dist/font/blog/blog.eot?t=1474266149'); /* IE9*/
+    src: url('/dist/font/blog/blog.eot?t=1474266149#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/dist/font/blog/blog.woff?t=1474266429') format('woff'), /* chrome, firefox */
+    url('/dist/font/blog/blog.ttf?t=1474266149') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('/dist/font/blog/blog.svg?t=1474266149#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .icon-boke,

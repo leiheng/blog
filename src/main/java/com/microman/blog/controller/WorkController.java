@@ -2,7 +2,8 @@ package com.microman.blog.controller;
 
 import java.math.BigInteger;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.microman.blog.common.CommonStatus;
-import com.microman.blog.common.JsonResult;
+import com.microman.blog.common.CommonResponse;
 import com.microman.blog.service.WorkHouseService;
 import com.microman.blog.vo.WorkHouse;
 
@@ -23,21 +24,21 @@ import com.microman.blog.vo.WorkHouse;
 @Controller
 @RequestMapping("/rest/work")
 public class WorkController {
-	@Autowired
+	@Resource
 	WorkHouseService workHouseService;
 
     @RequestMapping(value = "/house-info/{hid}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult findByUid(@PathVariable("hid") BigInteger hId) {
+    public CommonResponse findByUid(@PathVariable("hid") BigInteger hId) {
     	try {
     		WorkHouse workHouse = workHouseService.findByHid(hId);
     		if (null != workHouse) {
-    			return new JsonResult(CommonStatus.SUCCESS,workHouse,"获取房子信息成功");
+    			return new CommonResponse(CommonStatus.SUCCESS,workHouse,"获取房子信息成功");
 			}else{
-				return new JsonResult(CommonStatus.SUCCESS,"没有该房子");
+				return new CommonResponse(CommonStatus.SUCCESS,"没有该房子");
 			}
 		} catch (Exception e) {
-	        return new JsonResult(CommonStatus.ERROR,"获取房子信息失败");
+	        return new CommonResponse(CommonStatus.ERROR,"获取房子信息失败");
 		}
     }
 }

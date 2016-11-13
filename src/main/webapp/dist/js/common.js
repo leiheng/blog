@@ -7,7 +7,7 @@
 				common.initTemplateHelper();
 				common.renderHtml();
 				common.watch();
-				//setTimeout(function(){common.insertPageRecord()},0)
+				setTimeout(function(){common.insertPageRecord()},0)
 			},
 
 			/**
@@ -103,22 +103,21 @@
             	var self = common;
 
             	var par = {};
-            		par.source = 'first';
+            		par.source = self.getUrlParameter('from') || 'index';
             		par.page = 1;
             		par.browser = self.browser();
-            		par.model = "1";
+            		par.model = self.phoneType();
 
             	$.ajax({
                     url: liliangel._XHR + 'record/page',
                     type: "POST",
-                    data: JSON.stringify(par)
+                    data: {json: JSON.stringify(par)}
                 });
             },
 
             browser: function(){
 			    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-			    var isOpera = userAgent.indexOf("Opera") > -1;
-			    if (isOpera) {
+			    if (userAgent.indexOf("Opera") > -1) {
 			        return "Opera"
 			    }; //判断是否Opera浏览器
 			    if (userAgent.indexOf("Firefox") > -1) {
@@ -135,11 +134,27 @@
 			    }; //判断是否IE浏览器
 			},
 
+			phoneType: function(){ 
+
+				//正则,忽略大小写
+				var u =window.navigator.userAgent;
+				if(/iPad|Pad|iPhone|Android/.test(u)){
+				   	var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+						isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+
+					if(isIOS){
+						return 'ios';
+					}else if(isAndroid){
+						return 'android';
+					}
+				}else{
+					return 'pc';
+				}
+			},
+
            	//事件监听
             watch: function(){
                 var self = common;
-
-                
             }
 		    	
     	};

@@ -8,31 +8,31 @@ import com.alibaba.fastjson.JSONObject;
  * @date 2016-10-25
  *
  */
-public class JsonResult {
+public class CommonResponse {
 
 	private Integer code;// 业务代码
 	private String msg;// 消息
 	private Object data;// 数据对象
 
-	public JsonResult() {
+	public CommonResponse() {
 
 	}
 
-	public JsonResult(Integer code) {
+	public CommonResponse(Integer code) {
 		this.code = code;
 	}
 
-	public JsonResult(Integer code, Object data) {
+	public CommonResponse(Integer code, Object data) {
 		this.code = code;
 		this.data = data;
 	}
 
-	public JsonResult(Integer code, String msg) {
+	public CommonResponse(Integer code, String msg) {
 		this.code = code;
 		this.msg = msg;
 	}
 
-	public JsonResult(Integer code, Object data, String msg) {
+	public CommonResponse(Integer code, Object data, String msg) {
 		super();
 		this.code = code;
 		this.msg = msg;
