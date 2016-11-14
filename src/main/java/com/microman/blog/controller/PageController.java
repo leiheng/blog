@@ -1,6 +1,9 @@
 package com.microman.blog.controller;
 
 import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +27,11 @@ import com.microman.blog.vo.PageRecord;
 @Controller
 @RequestMapping("/")
 public class PageController {
-
+	
 	@Resource
 	PageRecordService pageRecordService;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(PageController.class);
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcomePage() {
@@ -49,8 +54,20 @@ public class PageController {
     @RequestMapping(value = "/rest/record/page", method = RequestMethod.POST)
     @ResponseBody
     public CommonResponse PageRecord(@RequestParam String json) {
-    	PageRecord pageRecord = JSON.parseObject(json, PageRecord.class); 
-    	int count = pageRecordService.insertRecord(pageRecord);
-    	return new CommonResponse(CommonStatus.SUCCESS,count);
+    	LOGGER.info("RestFul of record/page start,json:{}",json);
+    	PageRecord pageRecord = JSON.parseObject(json, PageRecord.class);
+    	try {
+    		int count = pageRecordService.insertRecord(pageRecord);
+    		if (count > 0) {
+    			LOGGER.info("RestFul of rest/record/page is successful.");
+    			return new CommonResponse(CommonStatus.SUCCESS,"保存页面浏览记录成功");
+			}else{
+				LOGGER.error("Save the PageRecord is successful.");
+				return new CommonResponse(CommonStatus.ERROR,"保存页面浏览记录失败");
+			}
+		} catch (Exception e) {
+			LOGGER.error("RestFul of rest/record/page is error.",e);
+	        return new CommonResponse(CommonStatus.ERROR,"保存页面浏览记录失败");
+		}
     }
 }

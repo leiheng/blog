@@ -34,13 +34,17 @@ public class BlogListController {
     @ResponseBody
     public CommonResponse blogInfo() {
     	try {
+    		LOGGER.info("RestFul of blog/list start");
     		List<BlogList> blogInfo = blogListService.blogInfo();
     		if (null != blogInfo) {
+    			LOGGER.info("RestFul of blog/list is successful.blogInfo:{}",blogInfo);
     			return new CommonResponse(CommonStatus.SUCCESS,blogInfo,"获取博客列表成功");
 			}else{
+				LOGGER.info("RestFul of blog/list is successful.but not have blog list!");
 				return new CommonResponse(CommonStatus.SUCCESS,"没有博客列表");
 			}
 		} catch (Exception e) {
+			LOGGER.error("RestFul of record/list is error.",e);
 	        return new CommonResponse(CommonStatus.ERROR,"获取博客列表失败");
 		}
     }
