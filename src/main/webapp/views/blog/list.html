@@ -314,19 +314,22 @@ script.onload = script.onreadystatechange = function(){
                 },
                 
                 //获取博客列表
-                getBlogListFun: function(){
+                getBlogListFun: function(type,isShowLoading){
                     var self = blogMain;
 
                     $.ajax({
                         url: liliangel._XHR + 'blog/list',
-                        //url: '/json/rest/blog-list.json',
                         type: "GET",
+                        data: {
+                            listType: type || ''
+                        },
                         beforeSend: function () {
-                            
+                            isShowLoading && liliangel.common.loading('show','#blogContent');
                         },
                         success: function (json) {
                             if (json) {
                                 self.renderBlogListFun(json);
+                                isShowLoading && liliangel.common.loading('hide');
                             }else {
                                 //common.error();
                             }
@@ -334,7 +337,7 @@ script.onload = script.onreadystatechange = function(){
                         complete: function () {
                             
                         },
-                        timeout: 6000
+                        timeout: 50000
                     });
                 },
                 //渲染博客列表
@@ -344,10 +347,11 @@ script.onload = script.onreadystatechange = function(){
                 },
 
                 watch: function(){
+                    var self = blogMain;
+
                     $('.li-blog-type').on('click',function(event){
                         var type = $(event.currentTarget).attr('data-type');
-                        console.log('点击的类型，',type)
-                        alert(type)
+                        self.getBlogListFun(type,true);
                     })
 
                     $('.icon-boke').on('click',function(event){

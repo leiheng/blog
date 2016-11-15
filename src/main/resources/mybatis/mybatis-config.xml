@@ -9,6 +9,8 @@
 		<setting name="lazyLoadingEnabled" value="true" />
 		<!-- 按需延迟加载 -->
 		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
 	<plugins>

@@ -19,7 +19,6 @@ import com.microman.blog.common.CommonResponse;
 import com.microman.blog.common.CommonStatus;
 import com.microman.blog.service.BlogListService;
 import com.microman.blog.vo.BlogList;
-import com.microman.blog.vo.PageRecord;
 
 /**
  * 博客相关
@@ -44,7 +43,7 @@ public class BlogListController {
     		if (StringUtils.isEmpty(listType)) {
     			blogInfo = blogListService.queryAll();
 			}else{
-				blogListService.queryListByWhere(new BlogList());
+				blogInfo = blogListService.queryListByListType(listType);
 			}
     		
     		if (null != blogInfo) {

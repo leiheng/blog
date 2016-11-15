@@ -21,12 +21,12 @@ public class BlogList implements Serializable{
 	private String listDescript;//描述
 	private String listLink;//链接
 	
-	private int listType;//分类，1前端，2JAVA，3感悟
-	private int isOwner;//1原创、2转载
-	private int listFrom;//来源，0博客园，1github，3简书，4...
+	private Integer listType;//分类，1前端，2JAVA，3感悟
+	private Integer isOwner;//1原创、2转载
+	private Integer listFrom;//来源，0博客园，1github，3简书，4...
 	
-	private int listStatus;//文章状态，1显示，0隐藏
-	private int isGood;//是否加精，1是，0否
+	private Integer listStatus;//文章状态，1显示，0隐藏
+	private Integer isGood;//是否加精，1是，0否
 	
 	private BigInteger listRead;//阅读，外键、逗号隔开
 	private BigInteger listLike;//喜欢
@@ -35,7 +35,7 @@ public class BlogList implements Serializable{
 	private String coverImg;//封面图片
 	private String coverDesc;//封面描述
 	
-	private int listSort;//排序位
+	private Integer listSort;//排序位
 	private Date createTime;//创建时间
 	private Date updateTime;//更新时间
 	
@@ -63,34 +63,34 @@ public class BlogList implements Serializable{
 	public void setListLink(String listLink) {
 		this.listLink = listLink;
 	}
-	public int getListType() {
+	public Integer getListType() {
 		return listType;
 	}
-	public void setListType(int listType) {
+	public void setListType(Integer listType) {
 		this.listType = listType;
 	}
 	public int getIsOwner() {
 		return isOwner;
 	}
-	public void setIsOwner(int isOwner) {
+	public void setIsOwner(Integer isOwner) {
 		this.isOwner = isOwner;
 	}
 	public int getListFrom() {
 		return listFrom;
 	}
-	public void setListFrom(int listFrom) {
+	public void setListFrom(Integer listFrom) {
 		this.listFrom = listFrom;
 	}
 	public int getListStatus() {
 		return listStatus;
 	}
-	public void setListStatus(int listStatus) {
+	public void setListStatus(Integer listStatus) {
 		this.listStatus = listStatus;
 	}
 	public int getIsGood() {
 		return isGood;
 	}
-	public void setIsGood(int isGood) {
+	public void setIsGood(Integer isGood) {
 		this.isGood = isGood;
 	}
 	public BigInteger getListRead() {
@@ -126,7 +126,7 @@ public class BlogList implements Serializable{
 	public int getListSort() {
 		return listSort;
 	}
-	public void setListSort(int listSort) {
+	public void setListSort(Integer listSort) {
 		this.listSort = listSort;
 	}
 	public Date getCreateTime() {
@@ -141,11 +141,17 @@ public class BlogList implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public BlogList(int listType) {
+		super();
+		this.listType = listType;
+	}
+	
 	public BlogList(BigInteger id, String listTitle, String listDescript,
-			String listLink, int listType, int isOwner, int listFrom,
-			int listStatus, int isGood, BigInteger listRead,
+			String listLink, Integer listType, Integer isOwner, Integer listFrom,
+			Integer listStatus, Integer isGood, BigInteger listRead,
 			BigInteger listLike, BigInteger listComment, String coverImg,
-			String coverDesc, int listSort, Date createTime, Date updateTime) {
+			String coverDesc, Integer listSort, Date createTime, Date updateTime) {
 		super();
 		this.id = id;
 		this.listTitle = listTitle;

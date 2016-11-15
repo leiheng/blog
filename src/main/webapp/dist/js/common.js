@@ -7,7 +7,7 @@
 				common.initTemplateHelper();
 				common.renderHtml();
 				common.watch();
-				//setTimeout(function(){common.insertPageRecord()},0)
+				setTimeout(function(){common.insertPageRecord()},0)
 			},
 
 			/**
@@ -22,15 +22,30 @@
 		    },
 
 		    /**
-			 * 通用的加载中
-			 * @return {[type]} [description]
-			 */
-			loading: function(){
-				require(['artDialog'],function(){
-					dialog({
-					    skin: 'min-dialog tips'
-					}).show();
-				})
+		     * 通用的加载中
+		     * @param  {[type]} flag    [显示隐藏的标识]
+		     * @param  {[type]} el      [在哪里显示隐藏的dom]
+		     * @param  {[type]} replace [是否替换，默认替换]
+		     * @return {[type]}         [description]
+		     */
+			loading: function(flag,el,replace){
+				if ('hide' === flag) {
+					$('.li-spinner').remove();
+				}else{
+					$('.li-spinner').remove();
+					var html = [
+						'<div class="li-spinner">',
+							'<div class="first-bounce"></div>',
+							'<div class="next-bounce"></div>',
+						'</div>'
+					]
+					if (replace) {
+						$(el).append(html.join(''))
+					}else{
+						$(el).html(html.join(''))
+					}
+					
+				}
 			},
 
 			/**
