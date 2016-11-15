@@ -10,12 +10,11 @@ import com.microman.blog.vo.BlogList;
 
 @Service
 public class BlogListService extends BaseService<BlogList>{
-
+/*
 	@Resource
 	BlogListMapper blogListMapper;
 	
 	public List<BlogList> blogInfo() {
 		return blogListMapper.blogInfo();
-	}
-	 
+	}*/
 }

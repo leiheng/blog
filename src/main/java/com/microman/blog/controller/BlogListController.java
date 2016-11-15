@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.microman.blog.common.CommonResponse;
@@ -32,10 +33,16 @@ public class BlogListController {
 	
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResponse blogInfo() {
+    public CommonResponse blogInfo(@RequestParam(required=false) Integer listType) {
     	try {
     		LOGGER.info("RestFul of blog/list start");
-    		List<BlogList> blogInfo = blogListService.blogInfo();
+    		List<BlogList> blogInfo = null;
+    		if (null == listType) {
+    			blogInfo = blogListService.queryAll();
+			}else{
+				blogListService.queryListByWhere(new BlogList());
+			}
+    		
     		if (null != blogInfo) {
     			LOGGER.info("RestFul of blog/list is successful.blogInfo:{}",blogInfo);
     			return new CommonResponse(CommonStatus.SUCCESS,blogInfo,"获取博客列表成功");
