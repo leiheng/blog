@@ -172,3 +172,31 @@ html,body {
         -webkit-transform: scale(1.0);
     }
 }
+
+.li-tips {
+    color: white;
+    font-size: 16px;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+    -webkit-animation-name: fadeIn; /*动画名称*/
+    -webkit-animation-duration: 5s; /*动画持续时间*/
+    -webkit-animation-iteration-count: 1; /*动画次数*/
+    -webkit-animation-delay: 0s; /*延迟时间*/
+}
+.tips-default {
+    background-color: #28D428;
+}
+.tips-success {
+    background-color: #28D428;
+}
+.tips-error {
+    background-color: red;
+}
+.tips-warning {
+    background-color: #FF991A;
+}

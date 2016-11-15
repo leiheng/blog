@@ -168,7 +168,9 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 li-nav-left">
                     <p class="li-title">莉</p>
-                    <p class="active"><i class="icon-boke"></i></p>
+                    <p class="active">
+                        <i class="icon-boke" id="iconBoke"></i>
+                    </p>
                 </div>
                 <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
                     <div class="jumbotron li-img">
@@ -346,6 +348,17 @@ script.onload = script.onreadystatechange = function(){
                         var type = $(event.currentTarget).attr('data-type');
                         console.log('点击的类型，',type)
                         alert(type)
+                    })
+
+                    $('.icon-boke').on('click',function(event){
+                        require(['artDialog'],function(){
+                            var d = dialog({
+                                align: 'right',
+                                content: '博客列表',
+                                quickClose: true// 点击空白处快速关闭
+                            });
+                            d.show(document.getElementById('iconBoke'));
+                        }) 
                     })
 
                     //侧滑导航，存在加载后渲染dom问题

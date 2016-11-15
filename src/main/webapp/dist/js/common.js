@@ -7,7 +7,7 @@
 				common.initTemplateHelper();
 				common.renderHtml();
 				common.watch();
-				setTimeout(function(){common.insertPageRecord()},0)
+				//setTimeout(function(){common.insertPageRecord()},0)
 			},
 
 			/**
@@ -20,6 +20,55 @@
 		        var r = window.location.search.substr(1).match(reg);
 		        if (r != null) return decodeURI(r[2]) || '';
 		    },
+
+		    /**
+			 * 通用的加载中
+			 * @return {[type]} [description]
+			 */
+			loading: function(){
+				require(['artDialog'],function(){
+					dialog({
+					    skin: 'min-dialog tips'
+					}).show();
+				})
+			},
+
+			/**
+			 * 提示信息
+			 * @return {[type]} [description]
+			 */
+			tips: function(opts){
+				if (typeof opts == 'string') {
+		    		return;
+				}
+		    	
+		    	var options = {
+		       	 	msg: '请稍后..',
+		       	 	type: 'default',
+		       	 	stayTime: 2000,
+		       	 	updateText: false,
+		            callback: null,
+		        }
+		    	
+		    	$.extend(true, options, opts || {});
+		    	
+		    	var $commonTips = $('.li-tips');
+		    	if (options.updateText) {
+		    		$commonTips.text(options.msg);
+		    	}else{
+		    		var html = [
+			    		'<div class="li-tips tips-'+ options.type +'">'+ options.msg +'</div>'
+			    	];
+
+			    	$('body').append(html.join());
+		    	}
+
+		    	setTimeout(function(){
+		    		$commonTips.remove();
+
+		    		options.callback && options.callback();
+		    	},options.stayTime)
+			},
 		    
 		    /**
 		     * 加载js

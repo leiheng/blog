@@ -2,13 +2,20 @@ package com.microman.blog.vo;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 
-import org.joda.time.DateTime;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "my_blog_list")
 public class BlogList implements Serializable{
 	
 	private static final long serialVersionUID = 3463786979561856007L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private BigInteger id;
 	private String listTitle;//标题
 	private String listDescript;//描述
@@ -29,8 +36,9 @@ public class BlogList implements Serializable{
 	private String coverDesc;//封面描述
 	
 	private int listSort;//排序位
-	private DateTime create_time;//创建时间
-	private DateTime update_time;//更新时间
+	private Date createTime;//创建时间
+	private Date updateTime;//更新时间
+	
 	public BigInteger getId() {
 		return id;
 	}
@@ -121,24 +129,23 @@ public class BlogList implements Serializable{
 	public void setListSort(int listSort) {
 		this.listSort = listSort;
 	}
-	public DateTime getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setCreate_time(DateTime create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	public DateTime getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdate_time(DateTime update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	public BlogList(BigInteger id, String listTitle, String listDescript,
 			String listLink, int listType, int isOwner, int listFrom,
 			int listStatus, int isGood, BigInteger listRead,
 			BigInteger listLike, BigInteger listComment, String coverImg,
-			String coverDesc, int listSort, DateTime create_time,
-			DateTime update_time) {
+			String coverDesc, int listSort, Date createTime, Date updateTime) {
 		super();
 		this.id = id;
 		this.listTitle = listTitle;
@@ -155,10 +162,11 @@ public class BlogList implements Serializable{
 		this.coverImg = coverImg;
 		this.coverDesc = coverDesc;
 		this.listSort = listSort;
-		this.create_time = create_time;
-		this.update_time = update_time;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
 	}
 	public BlogList() {
 		super();
 	}
+
 }

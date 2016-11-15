@@ -17,6 +17,7 @@ require.config({
         jquery:'plugin/jquery/jquery-1.9.0.min',
         common: 'dist/js/common',
         artTemplate: 'plugin/template/artTemplate-3.0',
+        artDialog: 'plugin/artDialog/dialog-min',
         jqueryWeUI: 'plugin/jqweui/js/jquery-weui.min',
         bootstrap: 'plugin/bootstrap-3.3.5-dist/js/bootstrap.min',
 
@@ -32,6 +33,7 @@ require.config({
             deps: ['jquery'],
             exports: '$'
         },
+        artDialog: ['css!plugin/artDialog/ui-dialog'],
         mdater: ['css!plugin/mdater/css/jquery.mdater.min']
     },
     waitSeconds: 15
